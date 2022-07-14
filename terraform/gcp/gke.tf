@@ -11,7 +11,7 @@ resource "google_container_cluster" "workload_cluster" {
 
   enable_legacy_abac       = true
   monitoring_service       = "none"
-  remove_default_node_pool = true
+  remove_default_node_pool = false
   network                  = google_compute_network.vpc.name
   subnetwork               = google_compute_subnetwork.public-subnetwork.name
   master_authorized_networks_config {
