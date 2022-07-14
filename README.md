@@ -1,5 +1,81 @@
 # TerraGoat - Vulnerable Terraform Infrastructure
 
+************************************************
+5 VULNERABILIDADES ENCONTRADAS:
+************************************************
+1:
+    Check: CKV_AWS_133: "Ensure that RDS instances has backup policy"
+    
+    FAILED for resource: aws_db_instance.default
+    
+    Error: 	File: /aws/db-app.tf:1-41
+    
+    
+SOLUÇÃO:
+
+    Devemos setar "backup_retention_period" com um valor entre 1 - 35, e checkar se nao está setado para 0(desabilita o backup).
+
+2:
+    Check: CKV_AWS_161: "Ensure RDS database has IAM authentication enabled"
+    
+	   FAILED for resource: aws_db_instance.default
+    
+    Error: 	File: /aws/db-app.tf:1-41
+    
+SOLUÇÃO:
+
+    Temos que garantir que a variavel "iam_database_authentication_enabled" está  = true para persistir a autenticacao IAM.
+
+3:
+    Check: CKV_AWS_17: "Ensure all data stored in RDS is not publicly accessible"
+    
+	   FAILED for resource: aws_db_instance.default
+    
+    Error: 	File: /aws/db-app.tf:1-41
+    
+SOLUÇÃO:
+
+    Devemos setar a variavel publicly_accessible = false para garantir que não é acessivel publicamente. 
+    resource "aws_db_instance" "default" {
+       ...
+       + publicly_accessible   = false
+    }
+
+4:
+    Check: CKV_AWS_16: "Ensure all data stored in the RDS is securely encrypted at rest"
+    
+	   FAILED for resource: aws_db_instance.default
+    
+    Error: 	File: /aws/db-app.tf:1-41
+    
+SOLUÇÃO:
+
+    Garanta que a encryptação está ativa no storage. 
+    resource "aws_db_instance" "example" {
+       ...
+       name                 = "mydb"
+       + storage_encrypted    = true 
+    }
+
+5:
+    Check: CKV_AWS_129: "Ensure that respective logs of Amazon Relational Database Service (Amazon RDS) are enabled"
+    
+	   FAILED for resource: aws_db_instance.default
+    
+    Error: 	File: /aws/db-app.tf:1-41
+    
+SOLUÇÃO:
+
+     Garanta que os logs estão ativados com enabled_cloudwatch_logs_exports.
+     resource "aws_db_instance" "mysql" {
+        allocated_storage = 5
+        ...
+        + enabled_cloudwatch_logs_exports = ["general", "error", "slowquery"]
+     }
+     
+
+************************************************
+
 [![Maintained by Bridgecrew.io](https://img.shields.io/badge/maintained%20by-bridgecrew.io-blueviolet)](https://bridgecrew.io/?utm_source=github&utm_medium=organic_oss&utm_campaign=terragoat)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/bridgecrewio/terragoat/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=bridgecrewio%2Fterragoat&benchmark=INFRASTRUCTURE+SECURITY)
 [![CIS Azure](https://www.bridgecrew.cloud/badges/github/bridgecrewio/terragoat/cis_azure)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=bridgecrewio%2Fterragoat&benchmark=CIS+AZURE+V1.1)
