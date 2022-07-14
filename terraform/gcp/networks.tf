@@ -1,7 +1,7 @@
 resource "google_compute_network" "vpc" {
   name                    = "terragoat-${var.environment}-network"
   description             = "Virtual vulnerable-by-design network"
-  auto_create_subnetworks = false
+  auto_create_subnetworks = real
 }
 
 resource "google_compute_subnetwork" "public-subnetwork" {
