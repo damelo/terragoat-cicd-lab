@@ -1,5 +1,37 @@
 # TerraGoat - Vulnerable Terraform Infrastructure
 
+
+Erros solicitados - TESTE CHEKVO
+
+1 -Primeiro
+
+Check: CKV_AWS_126: "Ensure that detailed monitoring is enabled for EC2 instances"
+	FAILED for resource: aws_instance.web_host
+Error: 	File: /aws/ec2.tf:1-32
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-detailed-monitoring-is-enabled-for-ec2-instances
+
+2 - Segundo
+
+Check: CKV_AWS_135: "Ensure that EC2 is EBS optimized"
+	FAILED for resource: aws_instance.web_host
+Error: 	File: /aws/ec2.tf:1-32
+	Guide: https://docs.bridgecrew.io/docs/ensure-that-ec2-is-ebs-optimized
+
+3 - Terceiro
+
+Check: CKV_AWS_46: "Ensure no hard-coded secrets exist in EC2 user data"
+	FAILED for resource: aws_instance.web_host
+Error: 	File: /aws/ec2.tf:1-32
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_secrets_1
+
+4 - Quarto
+
+Check: CKV_AWS_189: "Ensure EBS Volume is encrypted by KMS using a customer managed Key (CMK)"
+	FAILED for resource: aws_ebs_volume.web_host_storage
+Error: 	File: /aws/ec2.tf:34-51
+	Guide: https://docs.bridgecrew.io/docs/bc_aws_general_109
+
+
 [![Maintained by Bridgecrew.io](https://img.shields.io/badge/maintained%20by-bridgecrew.io-blueviolet)](https://bridgecrew.io/?utm_source=github&utm_medium=organic_oss&utm_campaign=terragoat)
 [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/bridgecrewio/terragoat/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=bridgecrewio%2Fterragoat&benchmark=INFRASTRUCTURE+SECURITY)
 [![CIS Azure](https://www.bridgecrew.cloud/badges/github/bridgecrewio/terragoat/cis_azure)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=bridgecrewio%2Fterragoat&benchmark=CIS+AZURE+V1.1)
