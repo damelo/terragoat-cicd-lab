@@ -15,7 +15,7 @@ MÁRCIO ABRANTES
     
 SOLUÇÃO:
 
-    Devemos setar "backup_retention_period" com um valor entre 1 - 35, e checkar se nao está setado para 0(desabilita o backup).
+    Devemos setar "backup_retention_period" com um valor entre 1 - 35, e checar se nao está setado para 0(desabilita o backup).
 
 2:
     Check: CKV_AWS_161: "Ensure RDS database has IAM authentication enabled"
