@@ -17,5 +17,5 @@ jobs:
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
-          directory: terraform
+          directory: github/workflows/checkov lua
           framework: terraform
